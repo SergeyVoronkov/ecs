@@ -4,39 +4,43 @@ import {Component, ComponentType, ComponentTypeId} from './Component';
 import {ComponentPool} from './ComponentPool'
 import {Filter} from './Filter';
 import {Socket} from './utils/Socket';
+import {IDestroyed} from './utils/common';
 
 
 export type IPoolsComponent = {
 	[key: ComponentTypeId]: ComponentPool<Component>;
 };
 
-export class World {
-	_poolEntity: EntityPool
-	_poolsComponent: IPoolsComponent = {}
-	_filters:{
-		[key: string]: Filter;
-	} = {}
+export class World implements IDestroyed {
+	socketCreateEntity = new Socket<[World, Entity]>();
+	socketRemoveEntity = new Socket<[World, Entity]>();
+	socketAddComponent = new Socket<[World, Entity, Component]>();
+	socketRemoveComponent = new Socket<[World, Entity, Component]>();
 
-	socketCreateEntity = new Socket();
-	socketRemoveEntity = new Socket();
-	socketAddComponent = new Socket();
-	socketRemoveComponent = new Socket();
-
-	constructor() {
-		this._poolEntity = new EntityPool(this);
-	}
-
+	/**
+	 * СОздать сущность
+	 */
 	createEntity(): Entity {
 		const entity = this._poolEntity.create();
+		this._entities.add(entity);
 		this.socketCreateEntity.exec(this, entity);
 		return entity;
 	}
 
+	/**
+	 * Удалить сущность
+	 * @param entity
+	 */
 	removeEntity(entity:Entity):void {
 		this._poolEntity.push(entity);
-		this.socketRemoveEntity.exec(entity);
+		this._entities.delete(entity);
+		this.socketRemoveEntity.exec(this, entity);
 	}
 
+	/**
+	 * Получить фильтр по полям
+	 * @param args
+	 */
 	getFilter(...args:any[]) {
 		const id = args.map(cmp=>cmp.Type).join('_');
 		if(!this._filters[id]) {
@@ -66,6 +70,7 @@ export class World {
 		const pool = this.getComponentPool(componentType);
 		const component =  pool.create(...args) as T;
 		entity._components[component.Type] = component;
+		this.socketAddComponent.exec(this, entity, component);
 		return component;
 	}
 
@@ -89,8 +94,12 @@ export class World {
 	removeComponent<T extends Component>(entity:Entity, componentType:ComponentType<T>) {
 		if(entity._components[componentType.Type]) {
 			const pool = this.getComponentPool(componentType);
-			pool.push(entity._components[componentType.Type]);
-			delete entity._components[componentType.Type];
+			const component = entity._components[componentType.Type];
+			if(component) {
+				pool.push(component);
+				delete entity._components[componentType.Type];
+				this.socketRemoveComponent.exec(this, entity, component);
+			}
 		}
 	}
 
@@ -102,4 +111,19 @@ export class World {
 	hasComponent<T extends Component>(entity:Entity, componentType:ComponentType<T>):boolean {
 		return entity._components[componentType.Type]?true:false;
 	}
+
+	destroy(): void {
+		for(let id in this._filters) {
+			this._filters[id].destroy();
+		}
+		this._filters = {};
+	}
+
+	// private block
+	_poolEntity:EntityPool = new EntityPool(this);
+	_poolsComponent: IPoolsComponent = {}
+	_entities:Set<Entity> = new Set();
+	_filters:{
+		[key: string]: Filter;
+	} = {}
 }

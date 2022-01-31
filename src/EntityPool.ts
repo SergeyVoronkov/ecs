@@ -3,7 +3,6 @@ import {Entity} from './Entity';
 import {World} from './World';
 
 export class EntityPool extends Pool<Entity>{
-	_world:World
 
 	constructor(world:World) {
 		super();
@@ -13,4 +12,7 @@ export class EntityPool extends Pool<Entity>{
 	_generate(): Entity {
 		return new Entity(this._world);
 	}
+
+	// private block
+	_world:World
 }

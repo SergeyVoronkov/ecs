@@ -6,3 +6,7 @@ export function idGenerator<T extends ID>():()=>T {
 		return (++count) as T;
 	}
 }
+
+export interface IDestroyed {
+	destroy():void
+}

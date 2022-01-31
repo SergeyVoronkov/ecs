@@ -2,7 +2,6 @@ import {Pool} from './utils/Pool';
 import {Component, ComponentType, ComponentTypeId} from './Component';
 
 export class ComponentPool<T extends Component> extends Pool<Component> {
-	_type: ComponentType<T>;
 
 	constructor(type: ComponentType<T>) {
 		super();
@@ -12,4 +11,7 @@ export class ComponentPool<T extends Component> extends Pool<Component> {
 	_generate(): Component {
 		return new this._type();
 	}
+
+	// private block
+	_type: ComponentType<T>;
 }

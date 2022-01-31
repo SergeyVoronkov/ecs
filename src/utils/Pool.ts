@@ -5,7 +5,6 @@ export interface IPoolObject {
 }
 
 export abstract class Pool<T extends IPoolObject> {
-	_items: T[] = [];
 
 	constructor(count: number = 0) {
 		for(let i = 0; i < count; ++i) {
@@ -32,4 +31,7 @@ export abstract class Pool<T extends IPoolObject> {
 	}
 
 	abstract _generate(): T
+
+	// private block
+	_items: T[] = [];
 }

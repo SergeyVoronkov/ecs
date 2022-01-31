@@ -2,18 +2,17 @@ import {World} from './World';
 import {Component, ComponentType} from './Component';
 import {Entity} from './Entity';
 import {handler, Handler} from './utils/Socket';
+import {IDestroyed} from './utils/common';
 
-export class Filter implements Iterable<Entity>{
-	_world:World
-	_id:string
-	_components: ComponentType<Component>[]
-	_entities: Set<Entity> = new Set()
-	_onChangeComponent: Handler = handler(this.onChangeComponent, this)
-
+export class Filter implements Iterable<Entity>, IDestroyed{
 	constructor(world:World, id:string, components: ComponentType<Component>[]) {
 		this._world = world;
 		this._id = id;
 		this._components = components;
+	}
+
+	destroy() {
+
 	}
 
 	onChangeComponent(world:World, entity:Entity, component:Component) {
@@ -52,4 +51,13 @@ export class Filter implements Iterable<Entity>{
 	[Symbol.iterator](): Iterator<Entity> {
 		return this._entities[Symbol.iterator]();
 	}
+
+
+	// private block
+	_world:World
+	_id:string
+	_components: ComponentType<Component>[]
+	_entities: Set<Entity> = new Set()
+
+	_onChangeComponent = handler(this.onChangeComponent, this)
 }

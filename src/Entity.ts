@@ -13,8 +13,6 @@ export type IComponentMap = {
 
 export class Entity implements IPoolObject {
 	id:EntityId = getId()
-	_world:World
-	_components:IComponentMap = {}
 
 	constructor(world: World) {
 		this._world = world;
@@ -41,5 +39,8 @@ export class Entity implements IPoolObject {
 
 	release(): void {
 	}
+	// private block
+	_world:World
+	_components:IComponentMap = {}
 }
 

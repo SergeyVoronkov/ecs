@@ -1,8 +1,7 @@
 import {World} from './World';
+import {IDestroyed} from './utils/common';
 
-export class System {
-	_world:World;
-
+export class System implements IDestroyed {
 	constructor(world:World, ...args:any[]) {
 		this._world = world;
 	}
@@ -11,7 +10,7 @@ export class System {
 		return this._world;
 	}
 
-	onDestroy(): void {
+	destroy(): void {
 	}
 
 	onInit(): void {
@@ -20,6 +19,8 @@ export class System {
 
 	onUpdate(dt: number): void {
 	}
+	// private block
+	_world:World;
 }
 
 export type SystemType<T extends System> = {

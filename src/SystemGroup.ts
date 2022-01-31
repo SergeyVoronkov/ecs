@@ -1,10 +1,8 @@
 import {World} from './World';
 import {System, SystemType} from './System';
+import {IDestroyed} from './utils/common';
 
-export class SystemGroup {
-	_world:World
-	_systems:System[] = []
-	_lastTime:number = 0;
+export class SystemGroup implements IDestroyed {
 	constructor(world: World) {
 		this._world = world;
 	}
@@ -29,8 +27,12 @@ export class SystemGroup {
 
 	destroy() {
 		for(let system of this._systems) {
-			system.onDestroy();
+			system.destroy();
 		}
 		this._systems = [];
 	}
+	// private block
+	_world:World
+	_systems:System[] = []
+	_lastTime:number = 0;
 }
