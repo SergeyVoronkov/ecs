@@ -7,6 +7,12 @@ export interface IPoolObject {
 export abstract class Pool<T extends IPoolObject> {
 	_items: T[] = [];
 
+	constructor(count: number = 0) {
+		for(let i = 0; i < count; ++i) {
+			this._items.push(this._generate());
+		}
+	}
+
 	push(item: T) {
 		this._items.push(item);
 		item.release();
