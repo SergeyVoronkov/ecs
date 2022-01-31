@@ -10,14 +10,20 @@ class TestComponent extends Component {
 	param1: number = 0
 	param2: number = 0
 
-	init(param1:number, param2:number) {
+	init(param1:number = 0, param2:number = 0) {
 		this.param1 = param1;
 		this.param2 = param2;
 	}
 }
 
 class TestSystem extends System {
-	filter = this.world.getFilter([TestComponent])
+	filter = this.world.getFilter(TestComponent)
+
+	onUpdate(dt: number) {
+		for(let entity of this.filter) {
+			console.log(entity)
+		}
+	}
 }
 
 describe('Компоненты', function () {
@@ -34,7 +40,10 @@ describe('Компоненты', function () {
 
 	it('Системы', function() {
 		let group = new SystemGroup(world);
-		group.addSystem(TestSystem)
+		group.addSystem(TestSystem);
+
+		world.createEntity().add(TestComponent);
+
 		group.init();
 		group.update(0);
 		group.destroy()

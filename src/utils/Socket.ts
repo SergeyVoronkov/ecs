@@ -1,4 +1,5 @@
-type EmptyArgs = any[];
+import {EmptyArgs} from './common';
+
 
 interface IHandler<F extends EmptyArgs> {
 	exec: (...args:F)=>void

@@ -37,6 +37,10 @@ export class World implements IDestroyed {
 		this.socketRemoveEntity.exec(this, entity);
 	}
 
+	get entities():Iterable<Entity> {
+		return this._entities;
+	}
+
 	/**
 	 * Получить фильтр по полям
 	 * @param args

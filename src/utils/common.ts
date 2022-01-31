@@ -1,4 +1,5 @@
 type ID = number
+export type EmptyArgs = any[];
 
 export function idGenerator<T extends ID>():()=>T {
 	let count = 0;

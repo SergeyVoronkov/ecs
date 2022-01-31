@@ -1,22 +1,45 @@
 import {World} from './World';
-import {Component, ComponentType} from './Component';
+import {Component, ComponentType, ComponentTypeId} from './Component';
 import {Entity} from './Entity';
-import {handler, Handler} from './utils/Socket';
+import {handler} from './utils/Socket';
 import {IDestroyed} from './utils/common';
 
 export class Filter implements Iterable<Entity>, IDestroyed{
 	constructor(world:World, id:string, components: ComponentType<Component>[]) {
 		this._world = world;
 		this._id = id;
-		this._components = components;
+
+		for(let cmp of components) {
+			this._components.add(cmp);
+		}
+
+		for(let entity of this._world.entities) {
+			this.update(entity);
+		}
+
+		this._world.socketAddComponent.on(this._onAddComponent);
+		this._world.socketRemoveComponent.on(this._onRemoveComponent);
+		this._world.socketRemoveEntity.on(this._onRemoveEntity);
 	}
 
 	destroy() {
 
 	}
 
-	onChangeComponent(world:World, entity:Entity, component:Component) {
+	onAddComponent(world:World, entity:Entity, component:Component) {
+		if(this._components.has(component.constructor as ComponentType<Component>)) {
+			this.update(entity);
+		}
+	}
 
+	onRemoveComponent(world:World, entity:Entity, component:Component) {
+		if(this._components.has(component.constructor as ComponentType<Component>)) {
+			this.update(entity);
+		}
+	}
+
+	onRemoveEntity(world:World, entity:Entity) {
+		this._entities.delete(entity);
 	}
 
 	/**
@@ -56,8 +79,10 @@ export class Filter implements Iterable<Entity>, IDestroyed{
 	// private block
 	_world:World
 	_id:string
-	_components: ComponentType<Component>[]
+	_components: Set<ComponentType<Component>> = new Set()
 	_entities: Set<Entity> = new Set()
 
-	_onChangeComponent = handler(this.onChangeComponent, this)
+	_onAddComponent = handler(this.onAddComponent, this)
+	_onRemoveComponent = handler(this.onRemoveComponent, this)
+	_onRemoveEntity = handler(this.onRemoveEntity, this)
 }
