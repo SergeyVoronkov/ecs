@@ -1,8 +1,7 @@
-import {idGenerator} from './utils/common'
-import {IPoolObject} from './utils/Pool';
-import {World} from './World';
-import {Component, ComponentType, ComponentTypeId} from './Component';
-import {ComponentPool} from './ComponentPool';
+import {idGenerator} from './utils/common.js'
+import {IPoolObject} from './utils/Pool.js';
+import {World} from './World.js';
+import {Component, ComponentType, ComponentTypeId} from './Component.js';
 
 export type EntityId = number;
 export const getId = idGenerator<EntityId>();
@@ -22,16 +21,30 @@ export class Entity implements IPoolObject {
 		return this._world.hasComponent(this, componentType);
 	}
 
-	get<T extends Component>(componentType:ComponentType<T>): T | null {
+	getComponent<T extends Component>(componentType:ComponentType<T>): T | null {
 		return this._world.getComponent(this, componentType);
 	}
 
-	add<T extends Component>(componentType:ComponentType<T>, ...args:any[]): T {
-		return this._world.addComponent(this, componentType);
+	get<T extends Component>(componentType:ComponentType<T>): T {
+		let cmp = this._world.getComponent(this, componentType);
+		if(!cmp) {
+			cmp = this._world.addComponent(this, componentType);
+		}
+		return cmp;
 	}
 
-	remove<T extends Component>(componentType:ComponentType<T>) {
+	addComponent<T extends Component>(componentType:ComponentType<T>, ...args:any[]): T {
+		return this._world.addComponent(this, componentType, ...args);
+	}
+
+	add<T extends Component>(componentType:ComponentType<T>, ...args:any[]): this {
+		this._world.addComponent(this, componentType, ...args);
+		return this;
+	}
+
+	remove<T extends Component>(componentType:ComponentType<T>): this {
 		this._world.removeComponent(this, componentType);
+		return this;
 	}
 
 	init(...args: any[]): void {

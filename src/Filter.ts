@@ -1,8 +1,8 @@
-import {World} from './World';
-import {Component, ComponentType, ComponentTypeId} from './Component';
-import {Entity} from './Entity';
-import {handler} from './utils/Socket';
-import {IDestroyed} from './utils/common';
+import {World} from './World.js';
+import {Component, ComponentType} from './Component.js';
+import {Entity} from './Entity.js';
+import {handler} from './utils/Socket.js';
+import {IDestroyed} from './utils/common.js';
 
 export class Filter implements Iterable<Entity>, IDestroyed{
 	constructor(world:World, id:string, components: ComponentType<Component>[]) {
@@ -75,6 +75,9 @@ export class Filter implements Iterable<Entity>, IDestroyed{
 		return this._entities[Symbol.iterator]();
 	}
 
+	first(): Entity {
+		return this._entities[Symbol.iterator]().next().value;
+	}
 
 	// private block
 	_world:World

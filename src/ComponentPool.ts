@@ -1,5 +1,5 @@
-import {Pool} from './utils/Pool';
-import {Component, ComponentType, ComponentTypeId} from './Component';
+import {Pool} from './utils/Pool.js';
+import {Component, ComponentType} from './Component.js';
 
 export class ComponentPool<T extends Component> extends Pool<Component> {
 

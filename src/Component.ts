@@ -1,12 +1,11 @@
-import {idGenerator} from './utils/common';
-import {IPoolObject} from './utils/Pool';
+import {idGenerator} from './utils/common.js';
+import {IPoolObject} from './utils/Pool.js';
 
 export type ComponentTypeId = number;
 export const getTypeId = idGenerator<ComponentTypeId>();
 
 
-
-export class Component implements IPoolObject{
+export class Component implements IPoolObject {
 	static readonly Type: ComponentTypeId = getTypeId();
 
 	init(...args: any[]): void {
@@ -15,13 +14,13 @@ export class Component implements IPoolObject{
 	release(): void {
 	}
 
-	get Type():ComponentTypeId {
+	get Type(): ComponentTypeId {
 		// @ts-ignore
 		return this.constructor.Type as ComponentTypeId;
 	}
 }
 
 export type ComponentType<T extends Component> = {
-	new (): T
+	new(): T
 	readonly Type: ComponentTypeId
 }

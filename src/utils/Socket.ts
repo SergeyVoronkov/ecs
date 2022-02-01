@@ -1,4 +1,4 @@
-import {EmptyArgs} from './common';
+import {EmptyArgs} from './common.js';
 
 
 interface IHandler<F extends EmptyArgs> {

@@ -1,10 +1,10 @@
-import {Entity} from './Entity';
-import {EntityPool} from './EntityPool';
-import {Component, ComponentType, ComponentTypeId} from './Component';
-import {ComponentPool} from './ComponentPool'
-import {Filter} from './Filter';
-import {Socket} from './utils/Socket';
-import {IDestroyed} from './utils/common';
+import {Entity} from './Entity.js';
+import {EntityPool} from './EntityPool.js';
+import {Component, ComponentType, ComponentTypeId} from './Component.js';
+import {ComponentPool} from './ComponentPool.js'
+import {Filter} from './Filter.js';
+import {Socket} from './utils/Socket.js';
+import {IDestroyed} from './utils/common.js';
 
 
 export type IPoolsComponent = {
@@ -45,7 +45,7 @@ export class World implements IDestroyed {
 	 * Получить фильтр по полям
 	 * @param args
 	 */
-	getFilter(...args:any[]) {
+	getFilter(...args:ComponentType<Component>[]): Filter {
 		const id = args.map(cmp=>cmp.Type).join('_');
 		if(!this._filters[id]) {
 			this._filters[id] = new Filter(this, id, args);

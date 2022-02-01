@@ -1,4 +1,4 @@
-import {World} from '../src/World';
+import {World} from '../src/World.js';
 
 describe('Общии', function () {
 	const world = new World();

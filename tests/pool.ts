@@ -1,4 +1,4 @@
-import {Pool,IPoolObject} from '../src/utils/Pool';
+import {IPoolObject, Pool} from '../src/utils/Pool.js';
 import assert from 'assert';
 
 

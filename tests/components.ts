@@ -1,8 +1,8 @@
-import {World} from '../src/World';
-import {Component, ComponentTypeId, getTypeId} from '../src/Component';
+import {World} from '../src/World.js';
+import {Component, ComponentTypeId, getTypeId} from '../src/Component.js';
 import assert from 'assert';
-import {SystemGroup} from '../src/SystemGroup';
-import {System} from '../src/System';
+import {SystemGroup} from '../src/SystemGroup.js';
+import {System} from '../src/System.js';
 
 class TestComponent extends Component {
 	static readonly Type: ComponentTypeId = getTypeId();
@@ -42,7 +42,9 @@ describe('Компоненты', function () {
 		let group = new SystemGroup(world);
 		group.addSystem(TestSystem);
 
-		world.createEntity().add(TestComponent);
+		world.createEntity()
+			.add(TestComponent)
+			.add(TestComponent);
 
 		group.init();
 		group.update(0);
