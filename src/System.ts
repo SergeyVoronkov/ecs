@@ -1,4 +1,4 @@
-import {World} from './World.js';
+import {World} from './World';
 import {IDestroyed} from '@mygame/utils';
 
 export class System implements IDestroyed {

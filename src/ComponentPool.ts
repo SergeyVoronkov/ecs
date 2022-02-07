@@ -1,4 +1,4 @@
-import {Component, ComponentType} from './Component.js';
+import {Component, ComponentType} from './Component';
 import {Pool} from '@mygame/utils';
 
 export class ComponentPool<T extends Component> extends Pool<Component> {

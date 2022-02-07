@@ -1,7 +1,7 @@
-import {System} from '../../src/System.js';
-import {Circle} from '../components/Circle.js';
-import {World} from '../../src/World.js';
-import {Position} from '../components/Position.js';
+import {System} from '../../src/System';
+import {Circle} from '../components/Circle';
+import {World} from '../../src/World';
+import {Position} from '../components/Position';
 
 export class RenderCircle extends System {
 	filter = this.world.getFilter(Circle, Position)

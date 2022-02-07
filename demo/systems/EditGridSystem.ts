@@ -1,9 +1,9 @@
-import {System} from '../../src/System.js';
-import {OnClick} from './ClickSystem.js';
-import {World} from '../../src/World.js';
-import {RenderGridOptions} from './RenderGrid.js';
-import {Grid} from '../components/Grid.js';
-import {GridCellRemoved, SpawnCell} from '../components/SpawnCell.js';
+import {System} from '../../src/System';
+import {OnClick} from './ClickSystem';
+import {World} from '../../src/World';
+import {RenderGridOptions} from './RenderGrid';
+import {Grid} from '../components/Grid';
+import {GridCellRemoved, SpawnCell} from '../components/SpawnCell';
 
 export class EditGridSystem extends System {
 	grid = this.world.getFilter(Grid)

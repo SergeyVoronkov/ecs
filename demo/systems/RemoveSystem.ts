@@ -1,7 +1,7 @@
-import {System} from '../../src/System.js';
-import {Component, ComponentType} from '../../src/Component.js';
-import {World} from '../../src/World.js';
-import {Filter} from '../../src/Filter.js';
+import {System} from '../../src/System';
+import {Component, ComponentType} from '../../src/Component';
+import {World} from '../../src/World';
+import {Filter} from '../../src/Filter';
 
 export class RemoveSystem<T extends Component> extends System {
 	filter: Filter;

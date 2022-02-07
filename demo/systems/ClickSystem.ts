@@ -1,6 +1,6 @@
-import {System} from '../../src/System.js';
-import {Component, ComponentTypeId, getTypeId} from '../../src/Component.js';
-import {World} from '../../src/World.js';
+import {System} from '../../src/System';
+import {Component, ComponentTypeId, getTypeId} from '../../src/Component';
+import {World} from '../../src/World';
 export class OnClick extends Component {
 	static readonly Type: ComponentTypeId = getTypeId();
 	event:MouseEvent | undefined;

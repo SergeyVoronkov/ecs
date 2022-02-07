@@ -1,6 +1,6 @@
-import {World} from './World.js';
-import {Component, ComponentType} from './Component.js';
-import {Entity} from './Entity.js';
+import {World} from './World';
+import {Component, ComponentType} from './Component';
+import {Entity} from './Entity';
 import {handler, IDestroyed} from '@mygame/utils';
 
 export class Filter implements Iterable<Entity>, IDestroyed {

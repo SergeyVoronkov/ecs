@@ -1,6 +1,6 @@
-import {System} from '../../src/System.js';
-import {Grid} from '../components/Grid.js';
-import {GridCellRemoved, SpawnCell} from '../components/SpawnCell.js';
+import {System} from '../../src/System';
+import {Grid} from '../components/Grid';
+import {GridCellRemoved, SpawnCell} from '../components/SpawnCell';
 
 export class LifeSystem extends System {
 	grid = this.world.getFilter(Grid)

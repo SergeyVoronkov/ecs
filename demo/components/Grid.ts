@@ -1,5 +1,5 @@
-import {Component, ComponentTypeId, getTypeId} from '../../src/Component.js';
-import {Entity} from '../../src/Entity.js';
+import {Component, ComponentTypeId, getTypeId} from '../../src/Component';
+import {Entity} from '../../src/Entity';
 
 type Null<T> = T | null;
 

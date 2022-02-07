@@ -1,4 +1,4 @@
-import {Component, ComponentTypeId, getTypeId} from '../../src/Component.js';
+import {Component, ComponentTypeId, getTypeId} from '../../src/Component';
 
 export class Vector extends Component {
 	static readonly Type: ComponentTypeId = getTypeId();

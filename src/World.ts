@@ -1,8 +1,8 @@
-import {Entity} from './Entity.js';
-import {EntityPool} from './EntityPool.js';
-import {Component, ComponentType, ComponentTypeId} from './Component.js';
-import {ComponentPool} from './ComponentPool.js'
-import {Filter} from './Filter.js';
+import {Entity} from './Entity';
+import {EntityPool} from './EntityPool';
+import {Component, ComponentType, ComponentTypeId} from './Component';
+import {ComponentPool} from './ComponentPool'
+import {Filter} from './Filter';
 import {IDestroyed, Signal} from '@mygame/utils';
 
 

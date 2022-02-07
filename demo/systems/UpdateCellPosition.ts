@@ -1,8 +1,8 @@
-import {System} from '../../src/System.js';
-import {GridCell} from '../components/GridCell.js';
-import {World} from '../../src/World.js';
-import {RenderGridOptions} from './RenderGrid.js';
-import {Position} from '../components/Position.js';
+import {System} from '../../src/System';
+import {GridCell} from '../components/GridCell';
+import {World} from '../../src/World';
+import {RenderGridOptions} from './RenderGrid';
+import {Position} from '../components/Position';
 
 export class UpdateCellPosition extends System {
 	filter = this.world.getFilter(GridCell)

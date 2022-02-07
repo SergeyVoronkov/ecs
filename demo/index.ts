@@ -1,18 +1,18 @@
-import {World} from '../src/World.js';
-import {SystemGroup} from '../src/SystemGroup.js';
-import {Grid} from './components/Grid.js';
-import {RenderGrid} from './systems/RenderGrid.js';
-import {RenderCircle} from './systems/RenderCircle.js';
-import {RemoveCellSystem, SpawnCellSystem} from './systems/SpawnCellSystem.js';
-import {RemoveSystem} from './systems/RemoveSystem.js';
-import {GridCellRemoved, SpawnCell} from './components/SpawnCell.js';
-import {UpdateCellPosition} from './systems/UpdateCellPosition.js';
-import {LifeSystem} from './systems/LifeSystem.js';
-import {ClickSystem, OnClick} from './systems/ClickSystem.js';
-import {EditGridSystem} from './systems/EditGridSystem.js';
+
+import {Grid} from './components/Grid';
+import {RenderGrid} from './systems/RenderGrid';
+import {RenderCircle} from './systems/RenderCircle';
+import {RemoveCellSystem, SpawnCellSystem} from './systems/SpawnCellSystem';
+import {RemoveSystem} from './systems/RemoveSystem';
+import {GridCellRemoved, SpawnCell} from './components/SpawnCell';
+import {UpdateCellPosition} from './systems/UpdateCellPosition';
+import {LifeSystem} from './systems/LifeSystem';
+import {ClickSystem, OnClick} from './systems/ClickSystem';
+import {EditGridSystem} from './systems/EditGridSystem';
+import {SystemGroup, World} from '../src';
 
 
-export function main(config: any) {
+function main(config: any) {
 	let {canvas} = config;
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -73,3 +73,6 @@ export function main(config: any) {
 
 	update();
 }
+main({
+	canvas: document.getElementById('gameCanvas')
+});

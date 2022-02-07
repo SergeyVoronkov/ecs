@@ -1,5 +1,5 @@
-import {World} from './World.js';
-import {Component, ComponentType, ComponentTypeId} from './Component.js';
+import {World} from './World';
+import {Component, ComponentType, ComponentTypeId} from './Component';
 import {idGenerator, IPoolObject} from '@mygame/utils';
 
 

@@ -1,8 +1,8 @@
-import {System} from '../../src/System.js';
-import {GridCellRemoved, SpawnCell} from '../components/SpawnCell.js';
-import {Grid} from '../components/Grid.js';
-import {GridCell} from '../components/GridCell.js';
-import {Circle} from '../components/Circle.js';
+import {System} from '../../src/System';
+import {GridCellRemoved, SpawnCell} from '../components/SpawnCell';
+import {Grid} from '../components/Grid';
+import {GridCell} from '../components/GridCell';
+import {Circle} from '../components/Circle';
 
 export class SpawnCellSystem extends System {
 	spawns = this.world.getFilter(SpawnCell)

@@ -1,6 +1,6 @@
-import {System} from '../../src/System.js';
-import {World} from '../../src/World.js';
-import {Grid} from '../components/Grid.js';
+import {System} from '../../src/System';
+import {World} from '../../src/World';
+import {Grid} from '../components/Grid';
 
 export type RenderGridOptions = {
 	position:{x:number,y:number}

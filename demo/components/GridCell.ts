@@ -1,5 +1,5 @@
-import {ComponentTypeId, getTypeId} from '../../src/Component.js';
-import {Vector} from './Vector.js';
+import {ComponentTypeId, getTypeId} from '../../src/Component';
+import {Vector} from './Vector';
 
 export class GridCell extends Vector {
 	static readonly Type: ComponentTypeId = getTypeId();
