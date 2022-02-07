@@ -1,6 +1,6 @@
-import {Pool} from './utils/Pool.js';
 import {Entity} from './Entity.js';
 import {World} from './World.js';
+import {Pool} from '@mygame/utils';
 
 export class EntityPool extends Pool<Entity>{
 

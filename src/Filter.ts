@@ -1,10 +1,9 @@
 import {World} from './World.js';
 import {Component, ComponentType} from './Component.js';
 import {Entity} from './Entity.js';
-import {handler} from './utils/Socket.js';
-import {IDestroyed} from './utils/common.js';
+import {handler, IDestroyed} from '@mygame/utils';
 
-export class Filter implements Iterable<Entity>, IDestroyed{
+export class Filter implements Iterable<Entity>, IDestroyed {
 	constructor(world:World, id:string, components: ComponentType<Component>[]) {
 		this._world = world;
 		this._id = id;

@@ -1,5 +1,4 @@
-import {idGenerator} from './utils/common.js';
-import {IPoolObject} from './utils/Pool.js';
+import {idGenerator, IPoolObject} from '@mygame/utils';
 
 export type ComponentTypeId = number;
 export const getTypeId = idGenerator<ComponentTypeId>();

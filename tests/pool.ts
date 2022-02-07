@@ -1,6 +1,5 @@
-import {IPoolObject, Pool} from '../src/utils/Pool.js';
 import assert from 'assert';
-
+import {IPoolObject, Pool} from '@mygame/utils';
 
 let total = 0;
 let init = 0;
@@ -24,6 +23,9 @@ class TestPoolObject implements IPoolObject {
 }
 
 class TestPool extends Pool<TestPoolObject> {
+	constructor(count: number = 0) {
+		super(count);
+	}
 	_generate(): TestPoolObject {
 		console.log('Create new object');
 		++total;

@@ -1,6 +1,6 @@
 import {World} from './World.js';
 import {System, SystemType} from './System.js';
-import {IDestroyed} from './utils/common.js';
+import {IDestroyed} from '@mygame/utils';
 
 export class SystemGroup implements IDestroyed {
 	constructor(world: World) {

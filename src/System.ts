@@ -1,5 +1,5 @@
 import {World} from './World.js';
-import {IDestroyed} from './utils/common.js';
+import {IDestroyed} from '@mygame/utils';
 
 export class System implements IDestroyed {
 	constructor(world:World, ...args:any[]) {

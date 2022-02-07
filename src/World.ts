@@ -3,8 +3,7 @@ import {EntityPool} from './EntityPool.js';
 import {Component, ComponentType, ComponentTypeId} from './Component.js';
 import {ComponentPool} from './ComponentPool.js'
 import {Filter} from './Filter.js';
-import {Socket} from './utils/Socket.js';
-import {IDestroyed} from './utils/common.js';
+import {IDestroyed, Signal} from '@mygame/utils';
 
 
 export type IPoolsComponent = {
@@ -12,10 +11,10 @@ export type IPoolsComponent = {
 };
 
 export class World implements IDestroyed {
-	socketCreateEntity = new Socket<[World, Entity]>();
-	socketRemoveEntity = new Socket<[World, Entity]>();
-	socketAddComponent = new Socket<[World, Entity, Component]>();
-	socketRemoveComponent = new Socket<[World, Entity, Component]>();
+	socketCreateEntity = new Signal<[World, Entity]>();
+	socketRemoveEntity = new Signal<[World, Entity]>();
+	socketAddComponent = new Signal<[World, Entity, Component]>();
+	socketRemoveComponent = new Signal<[World, Entity, Component]>();
 
 	/**
 	 * СОздать сущность
