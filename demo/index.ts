@@ -37,7 +37,7 @@ function main(config: any) {
 	systems
 		.add(ClickSystem, canvas)
 		.add(EditGridSystem, gridOptions)
-		// .add(LifeSystem)
+		.add(LifeSystem)
 		.add(SpawnCellSystem)
 		.add(RemoveCellSystem)
 		.add(UpdateCellPosition, gridOptions)
@@ -48,8 +48,25 @@ function main(config: any) {
 		.add(RemoveSystem, OnClick)
 
 
-	world.createEntity()
-		.add(SpawnCell, 0, 0)
+	world.createEntity().add(SpawnCell, 10, 10)
+	world.createEntity().add(SpawnCell, 11, 10)
+	world.createEntity().add(SpawnCell, 12, 10)
+	world.createEntity().add(SpawnCell, 10, 11)
+	world.createEntity().add(SpawnCell, 10, 12)
+	world.createEntity().add(SpawnCell, 10, 13)
+	world.createEntity().add(SpawnCell, 10, 14)
+
+	world.createEntity().add(SpawnCell, 10, 20)
+	world.createEntity().add(SpawnCell, 11, 20)
+	world.createEntity().add(SpawnCell, 12, 20)
+	world.createEntity().add(SpawnCell, 10, 21)
+	world.createEntity().add(SpawnCell, 10, 22)
+	world.createEntity().add(SpawnCell, 10, 23)
+	world.createEntity().add(SpawnCell, 11, 24)
+	world.createEntity().add(SpawnCell, 11, 21)
+	world.createEntity().add(SpawnCell, 11, 22)
+	world.createEntity().add(SpawnCell, 11, 23)
+	world.createEntity().add(SpawnCell, 11, 24)
 
 	systems.init();
 	systems.update(0);
